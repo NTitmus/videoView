@@ -6,7 +6,7 @@ import VideoDetail from './VideoDetail';
 import VideoDetail2 from './VideoDetail2';
 
 class App extends React.Component{
-    state={videos: [], selectedVideo: null}
+    state={videos: [], selectedVideo: null, allowedSearch:''}
 
     onTermSubmit = async (term) => {
         //const response = await Youtube.get()
@@ -16,8 +16,12 @@ class App extends React.Component{
         //console.log(response.data.items)
         this.setState({
             videos: response.data.items,
-            selectedVideo: response.data.items[0]
-        })
+            selectedVideo: response.data.items[0],
+            allowedSearch: ''
+        }) 
+        
+        } else {
+            this.setState({allowedSearch:'not Allowed!'})
         }
     }
 
@@ -25,6 +29,8 @@ class App extends React.Component{
         //console.log('From the app!', video);
         this.setState({selectedVideo: video});
     }
+
+
 
     //componentDidMount(){
     //    this.onTermSubmit('cars')
@@ -34,6 +40,7 @@ class App extends React.Component{
         return(
             <div>
                 <SearchBar onUserSubmit={this.onTermSubmit}/>
+                <div>{this.state.allowedSearch}</div>
                 <div className='ui grid'>
                     <div className='ui row'>
                         <div className='eleven wide column'>
