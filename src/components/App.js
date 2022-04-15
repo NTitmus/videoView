@@ -10,7 +10,7 @@ class App extends React.Component{
 
     onTermSubmit = async (term) => {
         //const response = await Youtube.get()
-        const allowed = ['car', 'cars', 'hat', 'hats']
+        const allowed = ['car', 'cars', 'beach']
         if (allowed.includes(term)){
         const response = await Youtube.get('/search', {params: {q: term}})
         //console.log(response.data.items)
